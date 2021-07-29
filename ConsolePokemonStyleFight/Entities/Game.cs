@@ -23,7 +23,8 @@ namespace ConsolePokemonStyleFight.Entities
 
         public Game()
         {
-            Data.ColonyName = "Stone Alone Colony";
+            Data.Reset();
+            
             Bar = new ProgressBar(Data.PNJList.Count);
             
             Console.OutputEncoding = Encoding.UTF8;
@@ -62,6 +63,8 @@ namespace ConsolePokemonStyleFight.Entities
                 var entry = GetEntry();
                 
                 CurrentPNJ().ApplyResponse(entry, this);
+                
+                player.GainExperience(1);
 
                 GameWon = Data.PNJList.All(pnj => pnj.Passed);
                 Exited = entry == "exit";

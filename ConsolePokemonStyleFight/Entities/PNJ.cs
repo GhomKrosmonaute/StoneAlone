@@ -18,9 +18,16 @@ namespace ConsolePokemonStyleFight.Entities
         {
             Face = face;
             Level = level;
-            AskCount = Math.Min(Level * 2, 5);
+            
+            Reset();
             
             ChangeAction(null);
+        }
+
+        public void Reset()
+        {
+            Passed = false;
+            AskCount = Math.Min(Level * 2, 5);
         }
 
         public int StatUpdatingAmount()

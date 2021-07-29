@@ -254,5 +254,11 @@ namespace ConsolePokemonStyleFight
             new ("(凸ಠ益ಠ)凸", 4),
             new ("୧((#Φ益Φ#))୨", 5) // Boss
         };
+
+        public static void Reset()
+        {
+            ColonyName = "Stone Alone Colony";
+            PNJList.ForEach(pnj => pnj.Reset());
+        }
     }
 }
