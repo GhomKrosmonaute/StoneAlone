@@ -6,36 +6,34 @@ namespace ConsolePokemonStyleFight.Entities
 {
     public class Stat
     {
-        public enum StatName
-        {
-            Health,
-            Strength,
-            Weight,
-            Defense,
-            Dodge,
-            RadioActivity,
-            Psychology,
-            Respect,
-            Money,
-        }
-
-        public StatName Name;
+        public Data.StatName Name;
 
         public int Value;
         public int InitialValue;
         public int MaxValue;
         public bool GoodBehaviorIsDown;
 
-        public Stat(StatName name, bool goodBehaviorIsDown = false)
+        public ProgressBar Bar;
+
+        public Stat(Data.StatName name, bool goodBehaviorIsDown = false)
         {
             Name = name;
             GoodBehaviorIsDown = goodBehaviorIsDown;
+            Bar = new ProgressBar(5);
             Reset(5);
+        }
+
+        private string UpdateBar()
+        {
+            Bar.Update(Value, MaxValue);
+
+            return ToString();
         }
 
         public void Reset()
         {
             Value = InitialValue;
+            UpdateBar();
         }
 
         public void Reset(int value)
@@ -43,6 +41,7 @@ namespace ConsolePokemonStyleFight.Entities
             MaxValue = value;
             InitialValue = GoodBehaviorIsDown ? 0 : MaxValue;
             Value = InitialValue;
+            UpdateBar();
         }
 
         public void Upgrade()
@@ -50,24 +49,49 @@ namespace ConsolePokemonStyleFight.Entities
             MaxValue ++;
             InitialValue = GoodBehaviorIsDown ? 0 : MaxValue;
             if (!GoodBehaviorIsDown) Value++;
+            UpdateBar();
+        }
+
+        public bool Update(int amount)
+        {
+            Value += amount;
+            if (Value <= 0)
+            {
+                Value = 0;
+                if (!GoodBehaviorIsDown)
+                {
+                    UpdateBar();
+                    return false;
+                }
+            }
+            if (Value > MaxValue)
+            {
+                Value = MaxValue;
+                if (GoodBehaviorIsDown)
+                {
+                    UpdateBar();
+                    return false;
+                }
+            }
+            UpdateBar();
+            return true;
         }
 
         public int ToPercent()
         {
-            return (int)ToFactor() * 100;
+            return (Value * 100) / MaxValue;
         }
 
         public float ToFactor()
         {
             return (float)Value / MaxValue;
         }
-
-        public string ToBar()
+        
+        public bool Test()
         {
-            return (
-                new String('▰', Math.Max(0, Value)) + 
-                new String('▱', Math.Min(MaxValue, Math.Max(0, MaxValue - Value)))
-            );
+            return GoodBehaviorIsDown 
+                ? new Random().Next(100) > ToPercent() 
+                : new Random().Next(100) < ToPercent();
         }
 
         public Color GetBarColor()
@@ -75,19 +99,12 @@ namespace ConsolePokemonStyleFight.Entities
             Color color;
 
             var percent = ToPercent();
+
+            if (GoodBehaviorIsDown) percent = 100 - percent;
             
-            if (GoodBehaviorIsDown)
-            {
-                if(percent > 80) color = Color.Red;
-                else if(percent > 50) color = Color.Yellow;
-                else color = Color.Green;
-            }
-            else
-            {
-                if(percent < 20) color = Color.Red;
-                else if(percent < 50) color = Color.Yellow;
-                else color = Color.Green;
-            }
+            if(percent < 20) color = Color.Red;
+            else if(percent < 50) color = Color.Yellow;
+            else color = Color.Green;
 
             return color;
         }
@@ -95,7 +112,7 @@ namespace ConsolePokemonStyleFight.Entities
         public new string ToString()
         {
             var color = GetBarColor();
-            return $"[ {ToBar().Pastel(color)} ] ( {Value.ToString().Pastel(color)} / {MaxValue} ) {Name}";
+            return $"[ {Bar.ToString().Pastel(color)} ] ( {Value.ToString().Pastel(color)}/{MaxValue} ) {(ToPercent() + "%").Pastel(color)} {Name}";
         }
     }
 }
