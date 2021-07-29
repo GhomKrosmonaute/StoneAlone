@@ -103,7 +103,9 @@ namespace ConsolePokemonStyleFight.Entities
             if (GoodBehaviorIsDown) percent = 100 - percent;
             
             if(percent < 20) color = Color.Red;
-            else if(percent < 50) color = Color.Yellow;
+            else if(percent < 40) color = Color.OrangeRed;
+            else if(percent < 60) color = Color.Yellow;
+            else if(percent < 80) color = Color.YellowGreen;
             else color = Color.Green;
 
             return color;

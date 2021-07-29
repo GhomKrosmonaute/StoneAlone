@@ -63,8 +63,8 @@ namespace ConsolePokemonStyleFight
                 $"Should we {"increase the price".Pastel(Color.BlueViolet)} of the fallout suit?",
                 new [] { StatName.Money },
                 new [] { StatName.Respect },
-                new [] { StatName.Psychology },
-                new [] { StatName.Respect },
+                new [] { StatName.Respect, StatName.Psychology },
+                null,
                 null,
                 null,
                 null
@@ -134,7 +134,7 @@ namespace ConsolePokemonStyleFight
                 new [] { StatName.Weight, StatName.Health },
                 new [] { StatName.Dodge, StatName.Money, StatName.Strength },
                 new [] { StatName.Psychology },
-                new [] { StatName.Health },
+                null,
                 null,
                 null,
                 null

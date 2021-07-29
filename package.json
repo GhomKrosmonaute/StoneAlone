@@ -1,0 +1,6 @@
+﻿{
+  "scripts": {
+    "build": "dotnet build",
+    "start": "./ConsolePokemonStyleFight/bin/Debug/net5.0/ConsolePokemonStyleFight.exe"
+  }
+}

@@ -121,7 +121,7 @@ namespace ConsolePokemonStyleFight.Entities
             return (
                 "\n" +
                 $"     {"(".Pastel(Color.White)} {CurrentAction().Ask} {")".Pastel(Color.White)}\n" +
-                $"         {"|/".Pastel(Color.White)}\n" +
+                $"         {"|/".Pastel(Color.White)}\n\n" +
                 $"     {Face.Pastel(Color.CadetBlue)}\n"
             );
         }

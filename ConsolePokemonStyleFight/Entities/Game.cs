@@ -80,15 +80,15 @@ namespace ConsolePokemonStyleFight.Entities
                 Console.Clear();
                 Console.WriteLine(
                     "\n\n" +
-                    "     ┌────────────────────────────────────────────────────┐\n" +
-                    "     │                                                    │\n" +
-                    $"     │  {"You lose...".Pastel(Color.Red)}                                       │\n" +
-                    "     │                                                    │\n" +
-                    "     │ The following statistics have a too critical rate, │\n" +
-                    $"     │ {Data.ColoredColonyName()} is on the verge of collapse.{new String(' ', Math.Max(0, 22 - Data.ColonyName.Length))}│\n" +
-                    "     │ Disappointing.                                     │\n" +
-                    "     │                                            Ghom    │\n" +
-                    "     └────────────────────────────────────────────────────┘\n"
+                    "     ┌──────────────────────────────────────────────────────────────────────────┐\n" +
+                    "     │                                                                          │\n" +
+                    $"     │  {"You lose...".Pastel(Color.Red)}                                                             │\n" +
+                    "     │                                                                          │\n" +
+                    "     │ The following statistics have a too critical rate,                       │\n" +
+                    $"     │ {Data.ColoredColonyName()} is on the verge of collapse.{new String(' ', Math.Max(0, 44 - Data.ColonyName.Length))}│\n" +
+                    "     │ Disappointing.                                                           │\n" +
+                    "     │                                                                  Ghom    │\n" +
+                    "     └──────────────────────────────────────────────────────────────────────────┘\n"
                 );
                 foreach (var statName in LostCause)
                 {
