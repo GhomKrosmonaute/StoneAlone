@@ -20,7 +20,7 @@ namespace ConsolePokemonStyleFight
             Money,
         }
         
-        public static string LandName = "Rock Alone Colony".Pastel(Color.DarkCyan);
+        public static string LandName = "Stone Alone Colony".Pastel(Color.DarkCyan);
 
         public static readonly List<Action> Actions = new ()
         {
@@ -209,7 +209,7 @@ namespace ConsolePokemonStyleFight
                 (game, yes) => LandName  = yes ? "Cool ".Pastel(Color.DarkCyan) + LandName : LandName
             ),
             // new (
-            //     $"I want to add \"Cool\" to the city's name. {"It's ok ?".Pastel(Color.BlueViolet)}",
+            //     $"I want to add \"Cool\" to the colony's name. {"It's ok ?".Pastel(Color.BlueViolet)}",
             //     null,
             //     null,
             //     null,
