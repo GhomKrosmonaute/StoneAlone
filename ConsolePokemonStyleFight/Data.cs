@@ -84,10 +84,10 @@ namespace ConsolePokemonStyleFight
                 new [] { StatName.Respect, StatName.Strength },
                 new [] { StatName.Health },
                 new [] { StatName.RadioActivity, StatName.Weight },
-                new [] { StatName.Money, StatName.Respect, StatName.Psychology },
+                new [] { StatName.Respect, StatName.Psychology },
                 null,
                 null,
-                null
+                null // si pas assez de force, game over
             ),
             new (
                 $"I am working on a nuclear fusion engine, please {"help my work.".Pastel(Color.BlueViolet)}",
@@ -212,6 +212,19 @@ namespace ConsolePokemonStyleFight
                 null,
                 null,
                 (game, yes) => ColonyName  = yes ? "Cool " + ColonyName : ColonyName
+            ),
+            new (
+                $"I sell you my experience. {"It's ok ?".Pastel(Color.BlueViolet)}",
+                null,
+                new [] { StatName.Money },
+                null,
+                null,
+                null,
+                null,
+                (game, yes) =>
+                {
+                    if(yes) game.player.GainExperience(game.CurrentPNJ().Level);
+                }
             ),
             // new (
             //     $"I want to add \"Cool\" to the colony's name. {"It's ok ?".Pastel(Color.BlueViolet)}",
