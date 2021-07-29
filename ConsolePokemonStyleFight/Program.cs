@@ -1,4 +1,7 @@
-﻿using ConsolePokemonStyleFight.Entities;
+﻿using System;
+using System.Drawing;
+using ConsolePokemonStyleFight.Entities;
+using Pastel;
 
 namespace ConsolePokemonStyleFight
 {
@@ -6,7 +9,17 @@ namespace ConsolePokemonStyleFight
     {
         static void Main()
         {
-            new Game();
+            var entry = "";
+            do
+            {
+                var game = new Game();
+
+                Console.ResetColor();
+                Console.WriteLine();
+                Console.Write($"Restart? {"Yes".Pastel(Color.Green)}/{"No".Pastel(Color.Red)} => ");
+                
+                entry = Console.ReadLine();
+            } while (!entry.Contains("n"));
         }
     }
 }

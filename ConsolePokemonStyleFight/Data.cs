@@ -20,7 +20,12 @@ namespace ConsolePokemonStyleFight
             Money,
         }
         
-        public static string LandName = "Stone Alone Colony".Pastel(Color.DarkCyan);
+        public static string ColonyName = "Stone Alone Colony";
+
+        public static string ColoredColonyName()
+        {
+            return ColonyName.Pastel(Color.LawnGreen);
+        }
 
         public static readonly List<Action> Actions = new ()
         {
@@ -35,7 +40,7 @@ namespace ConsolePokemonStyleFight
                 null
             ),
             new (
-                $"Should {LandName} {"use nuclear".Pastel(Color.BlueViolet)} power?", 
+                $"Should {ColoredColonyName()} {"use nuclear".Pastel(Color.BlueViolet)} power?", 
                 new []{ StatName.RadioActivity, StatName.Money },
                 null,
                 null,
@@ -66,13 +71,13 @@ namespace ConsolePokemonStyleFight
             ),
             new (
                 $"Shouldn't we {"barricade the colony?".Pastel(Color.BlueViolet)}",
-                new [] { StatName.Defense },
-                new [] { StatName.Respect, StatName.Money },
-                new [] { StatName.Respect },
+                new [] { StatName.Defense, StatName.Respect },
+                new [] { StatName.Money },
                 new [] { StatName.Psychology },
                 null,
                 null,
-                null
+                null,
+                null // isBarricaded = true
             ),
             new (
                 $"Zombie invasion! {"Defend us!".Pastel(Color.BlueViolet)}",
@@ -136,7 +141,7 @@ namespace ConsolePokemonStyleFight
             ),
             new (
                 $"Nmmmm.. nmmmm... nmaaaah (A zombie is attacking you, you want to {"run away?".Pastel(Color.BlueViolet)})",
-                new [] { StatName.Health, StatName.Dodge },
+                new [] { StatName.Dodge },
                 new [] { StatName.Weight, StatName.Psychology },
                 new [] { StatName.Psychology },
                 new [] { StatName.Health },
@@ -190,8 +195,8 @@ namespace ConsolePokemonStyleFight
                 null,
                 new [] { StatName.Respect },
                 null,
-                game => game.player.GetStat(Data.StatName.RadioActivity).ToPercent() >= 80,
-                game => game.player.GetStat(Data.StatName.RadioActivity).ToPercent() >= 80 && !game.player.IsNuclearManProposed,
+                game => game.player.GetStat(StatName.RadioActivity).ToPercent() >= 80,
+                game => game.player.GetStat(StatName.RadioActivity).ToPercent() >= 80 && !game.player.IsNuclearManProposed,
                 (game, yes) =>
                 {
                     if(yes) game.player.Flags.Add("Nuclear Man");
@@ -199,14 +204,14 @@ namespace ConsolePokemonStyleFight
                 }
             ),
             new (
-                $"I want to add \"Cool\" to the colony's name. {"It's ok ?".Pastel(Color.BlueViolet)}",
+                $"I want to add \"{"Cool".Pastel(Color.LawnGreen)}\" to the colony's name. {"It's ok ?".Pastel(Color.BlueViolet)}",
                 null,
                 new [] {StatName.Respect},
                 null,
                 new [] {StatName.Respect},
                 null,
                 null,
-                (game, yes) => LandName  = yes ? "Cool ".Pastel(Color.DarkCyan) + LandName : LandName
+                (game, yes) => ColonyName  = yes ? "Cool " + ColonyName : ColonyName
             ),
             // new (
             //     $"I want to add \"Cool\" to the colony's name. {"It's ok ?".Pastel(Color.BlueViolet)}",

@@ -122,7 +122,7 @@ namespace ConsolePokemonStyleFight.Entities
                 "\n" +
                 $"     {"(".Pastel(Color.White)} {CurrentAction().Ask} {")".Pastel(Color.White)}\n" +
                 $"         {"|/".Pastel(Color.White)}\n" +
-                $"    {Face.Pastel(Color.CadetBlue)}\n"
+                $"     {Face.Pastel(Color.CadetBlue)}\n"
             );
         }
     }
