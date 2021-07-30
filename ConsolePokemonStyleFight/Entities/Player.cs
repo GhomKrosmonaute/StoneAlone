@@ -103,8 +103,9 @@ namespace ConsolePokemonStyleFight.Entities
                 : "nothing".Pastel(Color.Gray);
             
             return (
+                "\n                              " +
                 $"[ Lvl. {Level.ToString().Pastel(Color.Orange)} ] " +
-                $"[ Exp. {Experience.ToString().Pastel(Color.Orange)}/{GetNeededExperience()} {ExperienceBar()} ]\n" +
+                $"[ Exp. {Experience.ToString().Pastel(Color.Orange)}/{GetNeededExperience()} {ExperienceBar()} ] " +
                 $"[ Flags: {flags} ]"
             );
         }

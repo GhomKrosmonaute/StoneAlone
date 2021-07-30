@@ -22,6 +22,11 @@ namespace ConsolePokemonStyleFight.Entities
             Max = max ?? Max;
             return ToString();
         }
+        
+        public int ToPercent()
+        {
+            return (Value * 100) / Max;
+        }
 
         public new string ToString()
         {

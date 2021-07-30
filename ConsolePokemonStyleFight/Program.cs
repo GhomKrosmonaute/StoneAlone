@@ -16,10 +16,11 @@ namespace ConsolePokemonStyleFight
 
                 Console.ResetColor();
                 Console.WriteLine();
-                Console.Write($"Restart? {"Yes".Pastel(Color.Green)}/{"No".Pastel(Color.Red)} => ");
+                Console.WriteLine(SizedString.Constrain("Restart?", 60, SizedString.Alignment.Center));
+                Game.AskYesNo();
                 
                 entry = Console.ReadLine();
-            } while (!entry.Contains("n"));
+            } while (entry != null && !entry.Contains("n"));
         }
     }
 }

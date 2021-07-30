@@ -22,6 +22,48 @@ namespace ConsolePokemonStyleFight
         
         public static string ColonyName = "Stone Alone Colony";
 
+        public static string TitleScreen = (
+                                               "\n\n" +
+                                               "  ____  ____  __   __ _  ____     __   __     __   __ _  ____ \n" +
+                                               " / ___)(_  _)/  \\ (  ( \\(  __)   / _\\ (  )   /  \\ (  ( \\(  __)\n" +
+                                               " \\___ \\  )( (  O )/    / ) _)   /    \\/ (_/\\(  O )/    / ) _) \n" +
+                                               " (____/ (__) \\__/ \\_)__)(____)  \\_/\\_/\\____/ \\__/ \\_)__)(____)"
+                                           ).Pastel(Color.LawnGreen) +
+                                           "\n\n" +
+                                           "     ┌───────────────────────────────────────────────────┐\n" +
+                                           "     │                                                   │\n" +
+                                           "     │  Hello!                                           │\n" +
+                                           "     │                                                   │\n" +
+                                           "     │ You are the leader of a post apocalyptic colony.  │\n" +
+                                           "     │ Survive long enough for reinforcements to arrive. │\n" +
+                                           "     │ Enjoy!                                            │\n" +
+                                           "     │                                           Ghom    │\n" +
+                                           "     └───────────────────────────────────────────────────┘\n";
+
+        public static string LoseMail = "\n\n" +
+                                        "     ┌──────────────────────────────────────────────────────────────────────────┐\n" +
+                                        "     │                                                                          │\n" +
+                                        $"     │  {"You lose...".Pastel(Color.Red)}                                                             │\n" +
+                                        "     │                                                                          │\n" +
+                                        "     │ The following statistics have a too critical rate,                       │\n" +
+                                        $"     │ {SizedString.Constrain($"{ColoredColonyName()} is on the verge of collapse.", 73, SizedString.Alignment.Left)}│\n" +
+                                        "     │ Disappointing.                                                           │\n" +
+                                        "     │                                                                  Ghom    │\n" +
+                                        "     └──────────────────────────────────────────────────────────────────────────┘\n";
+
+        public static string NukeBomb = "\n" +
+                                        "                                        _.-^^---....,,--\n" +
+                                        "                                    _--                  --_\n" +
+                                        "                                   <                        >)\n" +
+                                        "                                   |                         |\n" +
+                                        "                                    \\._                   _./\n" +
+                                        "                                       ```--. . , ; .--'''\n" +
+                                        "                                             | |   |\n" +
+                                        "                                          .-=||  | |=-.\n" +
+                                        "                                          `-=#$%&%$#=-'\n" +
+                                        "                                             | ;  :|\n" +
+                                        "                                    _____.,-#%&$@%#&#~,._____";
+
         public static string ColoredColonyName()
         {
             return ColonyName.Pastel(Color.LawnGreen);
