@@ -96,18 +96,11 @@ namespace ConsolePokemonStyleFight.Entities
             return Bar.ToString();
         }
 
-        public new string ToString()
+        public string FlagChain()
         {
-            string flags = Flags.Count > 0 
+            return Flags.Count > 0 
                 ? string.Join(", ", Flags.ConvertAll(flag => flag.Pastel(Color.HotPink))) 
                 : "nothing".Pastel(Color.Gray);
-            
-            return (
-                "\n                              " +
-                $"[ Lvl. {Level.ToString().Pastel(Color.Orange)} ] " +
-                $"[ Exp. {Experience.ToString().Pastel(Color.Orange)}/{GetNeededExperience()} {ExperienceBar()} ] " +
-                $"[ Flags: {flags} ]"
-            );
         }
     }
 }

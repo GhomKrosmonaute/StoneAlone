@@ -16,9 +16,9 @@ namespace ConsolePokemonStyleFight
 
                 Console.ResetColor();
                 Console.WriteLine();
-                Console.WriteLine(SizedString.Constrain("Restart?", 60, SizedString.Alignment.Center));
+                Console.Write(new String(' ', 30) + "Restart? ");
                 Game.AskYesNo();
-                
+
                 entry = Console.ReadLine();
             } while (entry != null && !entry.Contains("n"));
         }

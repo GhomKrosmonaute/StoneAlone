@@ -11,7 +11,7 @@ namespace ConsolePokemonStyleFight.Entities
     {
         public static void AskYesNo()
         {
-            Console.Write($"\n                              {"Yes".Pastel(Color.Green)}/{"No".Pastel(Color.Red)} =>");
+            Console.Write($"{"Yes".Pastel(Color.Green)}/{"No".Pastel(Color.Red)} => ");
         }
         
         public Player player = new(1);
@@ -69,7 +69,7 @@ namespace ConsolePokemonStyleFight.Entities
             else
             {
                 Console.Clear();
-                Console.WriteLine(Data.LoseMail);
+                Console.WriteLine(Data.LoseMail());
                 foreach (var statName in LostCause)
                 {
                     Console.WriteLine("     " + player.GetStat(statName).ToString());
@@ -107,6 +107,14 @@ namespace ConsolePokemonStyleFight.Entities
             var pnj = CurrentPNJ();
             Console.Clear();
             Console.WriteLine();
+
+            var maxStat = 0;
+
+            foreach (var stat in player.Stats)
+            {
+                maxStat = Math.Max(maxStat, stat.MaxValue);
+            }
+            
             for (var i=0; i<player.Stats.Count; i++)
             {
                 var stat = player.Stats[i];
@@ -118,11 +126,13 @@ namespace ConsolePokemonStyleFight.Entities
                         SizedString.Constrain(
                             $"{(stat.ToPercent() + "%").Pastel(color)} " +
                             $"{stat.Value.ToString().Pastel(color)}/{stat.MaxValue} " +
-                            $"{SizedString.Reverse(bar).Pastel(color)} " +
-                            $"{SizedString.Constrain($"{stat.Name}", 11, SizedString.Alignment.Right)} │ ", 
-                            50, 
+                            $"{SizedString.Constrain(SizedString.Reverse(bar), maxStat, SizedString.Alignment.Right).Pastel(color)} " +
+                            $"{SizedString.Constrain($"{stat.Name}".Pastel(pnj.CurrentAction().Has(stat.Name) ? Color.White : Color.DarkGray), 11, SizedString.Alignment.Right)}", 
+                            40, 
                             SizedString.Alignment.Right
-                        )
+                        ) + 
+                        SizedString.Constrain(new String('•', pnj.CurrentAction().Has(stat.Name) ? pnj.StatUpdatingAmount() : 0), 5, SizedString.Alignment.Right) +
+                        " │ "
                     );
                 }
                 else
@@ -137,15 +147,22 @@ namespace ConsolePokemonStyleFight.Entities
                         case 3:
                             dataLine += $"Progress {ProgressBar()} ";
                             break;
+                        case 5:
+                            dataLine += $"Lvl. {player.Level.ToString().Pastel(Color.Orange)} Exp. {player.Experience.ToString().Pastel(Color.Orange)}/{player.GetNeededExperience()} {player.ExperienceBar()}";
+                            break;
+                        case 7:
+                            dataLine += $"Flags: {player.FlagChain()}";
+                            break;
                     }
                     
                     Console.WriteLine(
+                        SizedString.Constrain(new String('•', pnj.CurrentAction().Has(stat.Name) ? pnj.StatUpdatingAmount() : 0), 5, SizedString.Alignment.Left) +
                         SizedString.Constrain(
-                            $"{SizedString.Constrain($"{stat.Name}", 14, SizedString.Alignment.Left)} " +
-                            $"{bar.Pastel(color)} " +
+                            $"{SizedString.Constrain($"{stat.Name}".Pastel(pnj.CurrentAction().Has(stat.Name) ? Color.White : Color.DarkGray), 14, SizedString.Alignment.Left)} " +
+                            $"{SizedString.Constrain(bar, maxStat, SizedString.Alignment.Left).Pastel(color)} " +
                             $"{stat.Value.ToString().Pastel(color)}/{stat.MaxValue} " +
                             $"{(stat.ToPercent() + "%").Pastel(color)}",
-                            50,
+                            40,
                             SizedString.Alignment.Left
                         ) + dataLine
                     );
@@ -159,8 +176,8 @@ namespace ConsolePokemonStyleFight.Entities
             //     );
             
             Console.WriteLine(pnj.ToString());
-            Console.WriteLine(player.ToString());
             
+            Console.Write(new String(' ', 30));
             AskYesNo();
         }
     }

@@ -40,16 +40,19 @@ namespace ConsolePokemonStyleFight
                                            "     │                                           Ghom    │\n" +
                                            "     └───────────────────────────────────────────────────┘\n";
 
-        public static string LoseMail = "\n\n" +
-                                        "     ┌──────────────────────────────────────────────────────────────────────────┐\n" +
-                                        "     │                                                                          │\n" +
-                                        $"     │  {"You lose...".Pastel(Color.Red)}                                                             │\n" +
-                                        "     │                                                                          │\n" +
-                                        "     │ The following statistics have a too critical rate,                       │\n" +
-                                        $"     │ {SizedString.Constrain($"{ColoredColonyName()} is on the verge of collapse.", 73, SizedString.Alignment.Left)}│\n" +
-                                        "     │ Disappointing.                                                           │\n" +
-                                        "     │                                                                  Ghom    │\n" +
-                                        "     └──────────────────────────────────────────────────────────────────────────┘\n";
+        public static string LoseMail()
+        {
+            return "\n\n" +
+                  "     ┌──────────────────────────────────────────────────────────────────────────┐\n" +
+                  "     │                                                                          │\n" +
+                  $"     │  {"You lose...".Pastel(Color.Red)}                                                             │\n" +
+                  "     │                                                                          │\n" +
+                  "     │ The following statistics have a too critical rate,                       │\n" +
+                  $"     │ {SizedString.Constrain($"{ColoredColonyName()} is on the verge of collapse.", 73, SizedString.Alignment.Left)}│\n" +
+                  "     │ Disappointing.                                                           │\n" +
+                  "     │                                                                  Ghom    │\n" +
+                  "     └──────────────────────────────────────────────────────────────────────────┘\n"; 
+        }
 
         public static string NukeBomb = "\n" +
                                         "                                        _.-^^---....,,--\n" +
